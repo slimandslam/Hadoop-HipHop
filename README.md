@@ -13,6 +13,9 @@ Oh well, it's here for reference anyway.....   :-D
 
 The included streaming API app is a quickie I wrote to parse
 the application firewall logs from MacOSX 10.8.x.  Those
-logs are stored in /private/var/log/appfirewall.log.X
+logs are stored in /private/var/log/appfirewall.log.X .
 It only looks for a couple of common hits on the firewall and
 counts the number of times attempts are made from a given IP address.
+
+Of course, to run these tests, you'll need to install HipHop:
+https://github.com/facebook/hiphop-php
