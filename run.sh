@@ -1,4 +1,7 @@
+# run.sh
 # This is just a simple shell script that runs the streaming API job the usual way (no HipHop)
+#
+#
 # Delete the Hadoop output directory (if it exists)
 hadoop fs -rmr /user/training/OUTPUT
 
