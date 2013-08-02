@@ -1,4 +1,7 @@
+# runHH.sh
 # This shell script runs the streaming API job after compiling the PHP map/reduce scripts into byte code
+#
+#
 # Remove the old HipHop repository and Hadoop OUTPUT folder
 rm -rf REPO
 hadoop fs -rmr /user/training/OUTPUT
