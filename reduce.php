@@ -7,23 +7,29 @@
     
 */
 
-$std_in = fopen("php://stdin", "r");
+// Wrap everything in a function so that HipHop can optimize it
+function runAll() {
+   
+   $std_in = fopen("php://stdin", "r");
 
-$cntarr = array();
+   $cntarr = array();
 
-while ($line = fgets($std_in)) {
+   while ($line = fgets($std_in)) {
 
-   $arr = explode("\t", $line);
+      $arr = explode("\t", $line);
 
-   if (trim($arr[1]) ==  'Deny netbiosd') isset($cntarr['D '.$arr[0]]) ? $cntarr['D '.$arr[0]]++ : $cntarr['D '.$arr[0]]=1;
-   if (trim($arr[1]) ==  'Stealth Mode') isset($cntarr['S '.$arr[0]]) ? $cntarr['S '.$arr[0]]++ : $cntarr['S '.$arr[0]]=1;
+      if (trim($arr[1]) ==  'Deny netbiosd') isset($cntarr['D '.$arr[0]]) ? $cntarr['D '.$arr[0]]++ : $cntarr['D '.$arr[0]]=1;
+      if (trim($arr[1]) ==  'Stealth Mode') isset($cntarr['S '.$arr[0]]) ? $cntarr['S '.$arr[0]]++ : $cntarr['S '.$arr[0]]=1;
                                                                          
+   }
+
+   fclose($std_in);
+
+   foreach ($cntarr as $k => $v) {
+ 	   echo $k."\t".$v."\n";
+   }
 }
 
-fclose($std_in);
-
-foreach ($cntarr as $k => $v) {
- 	echo $k."\t".$v."\n";
-}
+runAll();
 
 ?>
