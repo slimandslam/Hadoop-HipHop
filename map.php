@@ -33,31 +33,36 @@ function repeatFactor($str) {
 	}
 }
 
-// Save the previous line just in case a "repeated" statement
-// is next.
-$old_line = false;
+// Wrap everything in a function call so HipHop can optimize it
+function runAll() {
+	
+	// Save the previous line just in case a "repeated" statement
+	// is next.
+	$old_line = false;
 
-$std_in = fopen("php://stdin", "r");
+	$std_in = fopen("php://stdin", "r");
 
-while($line = fgets($std_in)) {
-	$repeat = repeatFactor($line);
-	if ($repeat and $old_line) {
-		for ($i = 1; $i <= $repeat; $i++) {
-	 		echo $old_line;
+	while($line = fgets($std_in)) {
+		$repeat = repeatFactor($line);
+		if ($repeat and $old_line) {
+			for ($i = 1; $i <= $repeat; $i++) {
+	 			echo $old_line;
+			}
+			continue;
 		}
-		continue;
-	}
 
-	$ip = getIP($line);
-	if ($ip) {
-		$reason = findReason($line);
-		if ($reason) {
-			$old_line =  $ip."\t".$reason."\n";
-			echo $old_line;
+		$ip = getIP($line);
+		if ($ip) {
+			$reason = findReason($line);
+			if ($reason) {
+				$old_line =  $ip."\t".$reason."\n";
+				echo $old_line;
+			}
 		}
 	}
+	fclose($std_in);
 }
 
+runAll();
 
-fclose($std_in);
 ?>
